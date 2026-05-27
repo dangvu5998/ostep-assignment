@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {
-        printf("Usage: %s <memory in MB> <time in seconds>", argv[0]);
+        printf("Usage: %s <memory in MB> <time in seconds>\n", argv[0]);
         return 1;
     }
     int memory_mb = atoi(argv[1]);
@@ -16,6 +16,8 @@ int main(int argc, char *argv[]) {
         printf("Failed to allocate memory");
         return 1;
     }
+    pid_t pid = getpid();
+    printf("PID = %d\n", pid);
     time_t start_time = time(NULL);
     while (time(NULL) - start_time < time_in_s) {
         for (int i = 0; i < memory_mb * 1048576; i++) {
